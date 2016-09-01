@@ -42,7 +42,14 @@ public class StorageFile {
             super(message);
         }
     }
-
+         /**
+          * Signals that file cannot be found
+          */
+         public static class StorageFileNotFoundException extends FileNotFoundException {
+             public StorageFileNotFoundException() {
+                 super(DEFAULT_STORAGE_FILEPATH + " does not exist");
+             }
+         }
     private final JAXBContext jaxbContext;
 
     public final Path path;
@@ -140,7 +147,14 @@ public class StorageFile {
             throw new StorageOperationException("File contains illegal data values; data type constraints not met");
         }
     }
-
+    /**
+      * Check if a file exist
+      */
+    public boolean isFileExist() {
+       File file = new File(DEFAULT_STORAGE_FILEPATH);
+       return file.exists();
+    }
+    
     public String getPath() {
         return path.toString();
     }
