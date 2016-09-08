@@ -7,15 +7,13 @@ import java.util.*;
  * Represents a Person's address in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
-public class Address {
+public class Address extends Contact{
 
 	public static final String EXAMPLE = "123, some street, some unit, some postal_code";
 	public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses should be in the format of BLOCK, STREET, UNIT, POSTAL CODE";
 	public static final String ADDRESS_VALIDATION_REGEX = ". ";
 	private static final int ADDRESS_PARAM_COUNT = 4;
 
-	public final String value;
-	private boolean isPrivate;
 	private Block block;
 	private Street street;
 	private Unit unit;
@@ -122,24 +120,4 @@ public class Address {
 		return postalCode;
 	}
 
-	@Override
-	public String toString() {
-		return value;
-	}
-
-	@Override
-	public boolean equals(Object other) {
-		return other == this // short circuit if same object
-				|| (other instanceof Address // instanceof handles nulls
-						&& this.value.equals(((Address) other).value)); // state check
-	}
-
-	@Override
-	public int hashCode() {
-		return value.hashCode();
-	}
-
-	public boolean isPrivate() {
-		return isPrivate;
-	}
 }
